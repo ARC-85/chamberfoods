@@ -1,18 +1,24 @@
+#importing required libraries
 import firebase_admin
 from firebase_admin import credentials, storage, db
 import os
 
+#read Firebase credentials from serviceAccountKey.json file
 cred=credentials.Certificate('./serviceAccountKey.json')
+
+#initialise Firebase app
 firebase_admin.initialize_app(cred, {
-    'storageBucket': '',
-    'databaseURL': 'https://'
+    'storageBucket': '', #define storage 
+    'databaseURL': 'https://' #define database url
 })
 
-bucket = storage.bucket()
+bucket = storage.bucket() #define variable for storage bucket
 
-ref = db.reference('/')
+#defining home reference within Realtime DB
+ref = db.reference('/') 
 home_ref = ref.child('file')
 
+#function for storage of files in Firebase
 def store_file(fileLoc):
 
     filename=os.path.basename(fileLoc)
@@ -22,6 +28,7 @@ def store_file(fileLoc):
     outfile=fileLoc
     blob.upload_from_filename(outfile)
 
+#function for pushing files to Realtime DB
 def push_db(fileLoc, time):
 
   filename=os.path.basename(fileLoc)
@@ -32,9 +39,3 @@ def push_db(fileLoc, time):
       'timestamp': time}
   )
 
-if __name__ == "__main__":
-    f = open("./test.txt", "w")
-    f.write("a demo upload file to test Firebase Storage")
-    f.close()
-    store_file('./test.txt')
-    push_db('./test.txt', '12/11/2020 9:00' )
