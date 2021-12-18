@@ -68,7 +68,7 @@ Using a second-hand refrigerator within the system means that a potential future
 
 1.	Attach the Pi Camera to the Raspberry Pi (RPi), as per the instructions here (note, camera may face in opposing orientation to the image below, depending on the orientation of the connector pins in relation to the RPi). 
 
-![rpi4](assets/rpipluscamer.png)
+![rpi4](assets/rpipluscamera.png)
 
 2.	Connect the RPi GPIO pins to the Breadboard in the CanaKit using the T-Cobbler. 
 
