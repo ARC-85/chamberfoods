@@ -23,8 +23,6 @@ Using a second-hand refrigerator within the system means that a potential future
 
 ![Chamber_Foods_Architecture](https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686/ChamberFoodsOverview.png?v=1639785459931)
 
-![Chamber_Foods_Architecture](assets/blynkdatastreams.png)
-
 1.	A DHT22 Digital Temperature Humidity Sensor (AM2302) will measure the temperature and connect to the RPI through GPIO physical pins 7 (data), 6 (ground), and 1 (3v3 power).
 2.	Live temperature data will be sent to the Blynk app (V0) from the RPI via WiFi, where it will be displayed as a gauge and chart. 
 3.	The temperature setpoint will be selected by the user using the slider widget and transmitted to the RPI (V1) via WiFi. Here, the temperature setpoint will be compared to the measured temperature (Step 1).
