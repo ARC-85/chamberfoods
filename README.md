@@ -1,6 +1,6 @@
 # Project Overview
 
-### Chamber Foods is an IoT project combining smart appliances, artisanal foods, and DIY.
+### [Chamber Foods](https://chamberfoods.glitch.me/) is an IoT project combining smart appliances, artisanal foods, and DIY.
 
 There are a variety of foods that require highly controlled environmental conditions for long periods of time, one such example is cured meats (i.e. charcuterie). Traditionally these processes have been left to master craftspeople, with the risk of failure and inconsistency always a threat due to difficulties in maintaining environmental conditions.
 
@@ -118,7 +118,7 @@ With this library installed, you can then use the ENER314-RT to connect to the i
 
 `~/ChamberFoods $ python3 learnsocket1.py`
 
-This will cause the first socket to match with the signal sent by the ENER314-RT and turn on and off, meaning the device signal for its first channel has now been learned. To connect the device with sockets 2, 3, and 4, repeat the process using the learnsocket2.py, learnsocket3.py, and learnsocket4.py scripts, respectively, ensuring that the extension board is put into learning mode each time by clicking the green button and waiting for the orange flashing light. If needed, the extension board can be fully reset by holding the green button and waiting for the orange light to flash rapidly. 
+This will cause the first socket to match with the signal sent by the ENER314-RT and turn on and off, meaning the device signal for its first channel has now been learned. To connect the device with sockets 2, 3, and 4, repeat the process using the `learnsocket2.py`, `learnsocket3.py`, and `learnsocket4.py` scripts, respectively, ensuring that the extension board is put into learning mode each time by clicking the green button and waiting for the orange flashing light. If needed, the extension board can be fully reset by holding the green button and waiting for the orange light to flash rapidly. 
 
 # 5	Setting up the DHT22/AM2302 Temperature and Humidity sensor
 
