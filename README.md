@@ -40,22 +40,27 @@ Using a second-hand refrigerator within the system means that a potential future
 # 2	Components 
 
 ![rpi4](assets/rpi4.jpg)
+
 •	Raspberry Pi 4 B (including charger and SD card)
- 
- 
+  
 ![rpi4](assets/rpicamera.png)
+
 •	Raspberry Pi Camera
  
 ![rpi4](assets/ener314rt.jpg)
+
 •	Energenie ENER314-RT Two-Way Pi-Mote
 
 ![rpi4](assets/ener010.jpg)
+
 •	Energenie ENER010 4 Way Remote Control Extension Lead
  
 ![rpi4](assets/grove_DHT_AM2302.jpg)
+
 •	Seeed Studio Grove Temperature and Humidity Sensor Pro Module (DHT22/AM2302)
  
 ![rpi4](assets/canakit.jpg) 
+
 •	CanaKit Raspberry Pi GPIO Breakout Board Bundle
  
 
@@ -214,7 +219,7 @@ Within the Storage I copied the ID (not including "gs://") and within the Realti
 
 ![rpi4](assets/firebasedatabaseaddress.png)
 
-![rpi4](assets/firebasestorageaddress.png)
+![rpi4](assets/firebasestoreageaddress.png)
  
 Within Glitch, I created a New Project and updated the index.html and script.js to accommodate the Firebase project. Note, you will need to update the firebaseConfig in your own script.js by accessing the “Settings” options within Project Overview once more and scrolling to SDK snippet within the “General” tab.  
 
