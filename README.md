@@ -67,22 +67,31 @@ Using a second-hand refrigerator within the system means that a potential future
 # 3	Assembling Components
 
 1.	Attach the Pi Camera to the Raspberry Pi (RPi), as per the instructions here (note, camera may face in opposing orientation to the image below, depending on the orientation of the connector pins in relation to the RPi). 
+
 ![rpi4](assets/rpipluscamer.png)
 
 2.	Connect the RPi GPIO pins to the Breadboard in the CanaKit using the T-Cobbler. 
+
 ![rpi4](assets/rpiplusboard.jpg)
 
 3.	It is now necessary to connect the ENER314-RT unit and the DHT/AM2302 sensor unit to the breadboard. Typically, the ENER314-RT sits on the GPIO pins of the RPi as follows: 
+
 ![rpi4](assets/rpiplusener314rt.png)
  
 However, this is not possible if the pins also need to be accessed by the DHT/AM2302 sensor. Therefore, we can wire only the necessary pins as described by the Energenie website (see here), as per the schematic below. 
+
 ![rpi4](assets/ener314rtlayout.png)
 
-4.	The DHT/AM2302 unit can now be similarly wired to the unused GPIO pins via the breadboard, including ground (black wire, pin number 6, ground), power (red wire, pin number 1, 3v3 Power), and data (yellow wire, pin number 7, GPIO 4). The resultant configuration should look something like as follows:      
+4.	The DHT/AM2302 unit can now be similarly wired to the unused GPIO pins via the breadboard, including ground (black wire, pin number 6, ground), power (red wire, pin number 1, 3v3 Power), and data (yellow wire, pin number 7, GPIO 4). The resultant configuration should look something like as follows:  
+    
 ![rpi4](assets/setup1.jpg)
+
 ![rpi4](assets/setup2.jpg)
+
 ![rpi4](assets/setup3.jpg)
+
 ![rpi4](assets/setup4.jpg)
+
 ![rpi4](assets/setup5.jpg)
 
 5.	The RPi can now be powered up and accessed (e.g. via SSH). 
