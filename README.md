@@ -94,72 +94,84 @@ sudo apt-get install python3-gpiozero
 
 To control the Energenie products using Python, I first cloned the Python library compiled by Whaleygeek (David Whale) from Github:
 
-git clone https://github.com/whaleygeek/pyenergenie.git
+`git clone https://github.com/whaleygeek/pyenergenie.git`
 
 Within this library, I have copied the energenie folder, located in: 
 
-~$ cd pyenergenie/src
+`~$ cd pyenergenie/src`
 
 With this library installed, you can then use the ENER314-RT to connect to the individual power sockets of the ENER010. Plug in the ENER010 to a mains power socket and press the green button (about 5 seconds) until the orange light is flashing at 1 second intervals. This means the device is in learning mode. Run the script: 
 
-~/ChamberFoods $ python3 learnsocket1.py
+`~/ChamberFoods $ python3 learnsocket1.py`
 
 This will cause the first socket to match with the signal sent by the ENER314-RT and turn on and off, meaning the device signal for its first channel has now been learned. To connect the device with sockets 2, 3, and 4, repeat the process using the learnsocket2.py, learnsocket3.py, and learnsocket4.py scripts, respectively, ensuring that the extension board is put into learning mode each time by clicking the green button and waiting for the orange flashing light. If needed, the extension board can be fully reset by holding the green button and waiting for the orange light to flash rapidly. 
 
-5	Setting up the DHT22/AM2302 Temperature and Humidity sensor
+# 5	Setting up the DHT22/AM2302 Temperature and Humidity sensor
 
-To control the Seeed Studio products using Python, I first installed the Python library from here using the single line method: 
+To control the Seeed Studio products using Python, I first installed the Python library from [here](https://github.com/Seeed-Studio/grove.py) using the single line method: 
 
-curl -sL https://github.com/Seeed-Studio/grove.py/raw/master/install.sh | sudo bash -s –
+`curl -sL https://github.com/Seeed-Studio/grove.py/raw/master/install.sh | sudo bash -s –`
 
 I then cloned the specific library for DHT devices from Github: 
 
-git clone https://github.com/Seeed-Studio/Seeed_Python_DHT
+`git clone https://github.com/Seeed-Studio/Seeed_Python_DHT`
 
 Within this library I have specifically copied the script: 
-seeed_dht.py
+
+`seeed_dht.py`
  
 To check the DHT22/AM2302 sensor is working run the script: 
 
-~/ChamberFoods $ python3 temphumi.py
+`~/ChamberFoods $ python3 temphumi.py`
 
 This should produce a readout something like: 
 
+```
 DHT22, humidity 63.4%, temperature 19.0*
 DHT22, humidity 63.4%, temperature 19.0*
 DHT22, humidity 63.3%, temperature 19.0*
 DHT22, humidity 63.4%, temperature 19.0*
 DHT22, humidity 63.4%, temperature 19.0*
 DHT22, humidity 63.4%, temperature 19.0*
+```
 
 Once all the hardware is working it is then necessary to set up the different software platforms. 
 
-6	Setting up the Blynk app
+# 6	Setting up the Blynk app
 
-I have used the Blynk platform for developing an app that can be used to read live sensor readings, adjust setpoint values, and even view the contents of the Chamber via the Pi Camera. After setting up an account, I first created a new template called ChamberFoods
+I have used the [Blynk](https://blynk.io/) platform for developing an app that can be used to read live sensor readings, adjust setpoint values, and even view the contents of the Chamber via the Pi Camera. After setting up an account, I first created a new template called ChamberFoods
 
- 
+![rpi4](assets/blynktemplate.png)
 
 Within the template, I set up 5 datastreams on virtual pins as follows: 
 
- 
+![rpi4](assets/blynkdatastreams.png)
 
 Once the template was formed (including the addition of widgets on the web-dashboard), a new device was created based on the ChamberFoods template. 
+
+![rpi4](assets/blynkwebdashboard.png)
  
 I then set up the device and widgets on the Blynk app as per below: 
-   
 
-7	Setting up Firebase and Glitch to view Chamber contents
+![rpi4](assets/blynkmobilesetup.png)
+
+# 7	Setting up Firebase and Glitch to view Chamber contents
+
 The Blynk app configuration shown previously includes a “Press 4 Pic” option (virtual channel V0), which I’ve used to create an event for the Raspberry Pi. Images taken are stored on the Raspberry Pi, but to avoid issues with space limitations, I have set up a Firebase account for publishing the image events on the cloud. I have then developed a web-app in Glitch, which can be viewed using the “View Picture” button (i.e. webpage viewing button) in Blynk.
 
 To setup the Firebase account, I signed in using my Google account and started a new project, “ChamberFoods” (I did not enable Google analytics). The two services I wanted to utilise were Runtime Database and Storage. 
 
 To create the Realtime Database, I clicked on the corresponding menu in the left column and clicked “Create Database”, ensuring to choose the appropriate server location relative to my location and starting in test mode. 
- 
+
+![rpi4](assets/firebasecreatedatabase.png)
 
 Similarly, to create Storage, I clicked the corresponding menu in the left column and clicked “Get Started”, again choosing the appropriate server location for my current location. 
+
+![rpi4](assets/firebasestorage.png)
  
 Within the Rules tab on the Storage page, I updated the code as follows to allow Glitch to read the storage:
+
+```
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
@@ -169,34 +181,49 @@ service firebase.storage {
     }
   }
 }
- 
+```
+![rpi4](assets/firebasepublish.png)
 
 On the RPi, I then installed the Firebase Administration package: 
 
-pip3 install firebase-admin 
+`pip3 install firebase-admin` 
 
 To allow the Glitch web-app to access the Firebase ChamberFoods project, I created a web app on Firebase by clicking “Project Overview” on the left menu and selecting the web-app option. 
+
+![rpi4](assets/firebaseapp.png)
  
 Choose a suitable name, register the app, and click “Continue to console”. 
+
+![rpi4](assets/rpicamapp.png)
  
 Click the “1 App” option:
- 
+
+![rpi4](assets/firebaseapp1.png)
 
 Select the “Settings” option for your app:
+
+![rpi4](assets/firebasesettings.png)
  
 Select the “Service accounts” option and click “Generate new private key”
+
+![rpi4](assets/firebaseprivatekey.png)
  
 I then saved this key on the RPi under the name “serviceAccountKey.json”.
+
 Within the Storage I copied the ID (not including "gs://") and within the Realtime Database I copied the web address, which I then used within the “storeFileFB.py” script as the ‘storage bucket’ and ‘databaseURL’ values respectively.
 
- 
+![rpi4](assets/firebasedatabaseaddress.png)
+
+![rpi4](assets/firebasestorageaddress.png)
  
 Within Glitch, I created a New Project and updated the index.html and script.js to accommodate the Firebase project. Note, you will need to update the firebaseConfig in your own script.js by accessing the “Settings” options within Project Overview once more and scrolling to SDK snippet within the “General” tab.  
 
- 
- 
+![rpi4](assets/firebasesettings.png) 
 
-8	Using Blynk to capture and view pictures
+![rpi4](assets/firebaseconfig.png) 
+
+# 8	Using Blynk to capture and view pictures
+
 Having already assigned the “TakePic” data stream to the “V0” virtual pin in the Blynk template, I could then assign the “V0” virtual pin to the “Take Picture” button in the Blynk app. Using this button, the V0 value could be modified and used to take pictures on the RPi camera and using the Firebase project to store images, which could then be incorporated within the Glitch webpage. It should be noted that an “img” folder was first created to store image files locally on the RPi. The “View Pic” webpage load button on the Blynk app was then connected with the webpage address of the Glitch webpage, so the “Take Picture” button would take a picture and the “View Pic” button would display the picture (via the webpage). 
 To check all elements are connected and interacting correctly, run the cameracheck.py script and use the buttons on the Blynk app to take and view pictures. 
 It should be noted that the takepicture.py script is separate from the chamberfoods.py script, but called withing the chamberfoods.py script. This is in order to avoid the error: 
