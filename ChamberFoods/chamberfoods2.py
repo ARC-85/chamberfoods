@@ -22,8 +22,6 @@ s3 = energenie.Devices.OOKSwitch((0x12345, 3))
 
 #initialise DHT22 temperature/humidity sensor device, 22 refers to sensor type and 4 refers to GPIO pin for data connection
 sensor = seeed_dht.DHT("22", 4) 
-#defining humidity and temperature variables for reading from sensor
-humi, temp = sensor.read() 
 
 #load MQTT configuration values from .env file
 config = dotenv_values(".env")
@@ -72,6 +70,8 @@ def v1_write_handler(value): #slider sets value (5 to 50)
 #indefinite loop  
 while True:
     try:
+      #defining humidity and temperature variables for reading from sensor
+      humi, temp = sensor.read() 
       
       blynk.run() #run Blynk
       blynk.virtual_write(2, round(temp,2)) #write values to virtual pin 2 (value display) from rounded temperature readings

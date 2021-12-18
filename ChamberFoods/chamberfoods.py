@@ -21,8 +21,6 @@ s2 = energenie.Devices.OOKSwitch((0x12345, 2))
 
 #initialise DHT22 temperature/humidity sensor device, 22 refers to sensor type and 4 refers to GPIO pin for data connection
 sensor = seeed_dht.DHT("22", 4)
-#defining humidity and temperature variables for reading from sensor
-humi, temp = sensor.read()
 
 #load MQTT configuration values and Blynk authorisation code from .env file
 config = dotenv_values(".env")
@@ -32,7 +30,7 @@ blynk = BlynkLib.Blynk(config['BLYNK_AUTH'])
 logging.basicConfig(level=logging.INFO)
 
 #define variables
-setvalue=15 #initial setpoint temperature. Will be changed by Blynk app slider widget (V1)
+setvalue=25 #initial setpoint temperature. Will be changed by Blynk app slider widget (V1)
 lastturnontime = time.time() #counter for the last time the fridge/cooler device was turned on relative to the current time
 lastturnofftime = time.time() #counter for the last time the fridge/cooler device was turned off relative to the current time
 turnedon = 0 #signal for fridge/cooler device turned on (value 1 or 0)
@@ -63,6 +61,10 @@ def v1_write_handler(value): #slider sets value (5 to 50)
 #indefinite loop
 while True:
     try:
+      
+      #defining humidity and temperature variables for reading from sensor
+      humi, temp = sensor.read()
+
       blynk.run() #run Blynk
       blynk.virtual_write(2, round(temp,2)) #write values to virtual pin 2 (value display) from rounded temperature readings
       blynk.virtual_write(3, round(humi,2)) #write values to virtual pin 3 (value display) from rounded humidity readings

@@ -11,8 +11,6 @@ from dotenv import dotenv_values
 
 #initialise DHT22 temperature/humidity sensor device, 22 refers to sensor type and 4 refers to GPIO pin for data connection
 sensor = seeed_dht.DHT("22", 4) 
-#defining humidity and temperature variables for reading from sensor
-humi, temp = sensor.read() 
 
 #load MQTT configuration values from .env file
 config = dotenv_values(".env")
@@ -54,6 +52,8 @@ topic = "channels/"+config["channelId"]+"/publish"
 # Publish a message to temp every 16 seconds via indefinite loop
 while True:
     try:
+        #defining humidity and temperature variables for reading from sensor
+        humi, temp = sensor.read() 
         print('DHT{0}, humidity {1:.1f}%, temperature {2:.1f}*'.format(sensor.dht_type, humi, temp)) #print the sensor type, temperature, and humidity values in the console
         payload=f"field1={temp}&field2={humi}" #define fields (temperature and humidity) for data transfer to MQTT Broker
         mqttc.publish(topic, payload) #publish to MQTT broker
