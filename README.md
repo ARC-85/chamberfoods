@@ -55,7 +55,7 @@ Using a second-hand refrigerator within the system means that a potential future
 
 •	Energenie ENER010 4 Way Remote Control Extension Lead
  
-![rpi4](assets/grove_DHT_AM2302.jpg)
+![rpi4](assets/grove_DHT22_AM2302.jpg)
 
 •	Seeed Studio Grove Temperature and Humidity Sensor Pro Module (DHT22/AM2302)
  
