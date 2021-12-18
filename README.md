@@ -78,7 +78,7 @@ Using a second-hand refrigerator within the system means that a potential future
 
 ![rpi4](assets/rpiplusener314rt.png)
  
-However, this is not possible if the pins also need to be accessed by the DHT/AM2302 sensor. Therefore, we can wire only the necessary pins as described by the Energenie website (see [here](https://energenie4u.co.uk/res/pdfs/ENER314-RT User Guide V2.pdf)), as per the schematic below. 
+However, this is not possible if the pins also need to be accessed by the DHT/AM2302 sensor. Therefore, we can wire only the necessary pins as described by the Energenie website, see [here](https://energenie4u.co.uk/res/pdfs/ENER314-RT User Guide V2.pdf), as per the schematic below. 
 
 ![rpi4](assets/ener314rtlayout.png)
 
