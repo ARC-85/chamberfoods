@@ -225,42 +225,63 @@ Within Glitch, I created a New Project and updated the index.html and script.js 
 # 8	Using Blynk to capture and view pictures
 
 Having already assigned the “TakePic” data stream to the “V0” virtual pin in the Blynk template, I could then assign the “V0” virtual pin to the “Take Picture” button in the Blynk app. Using this button, the V0 value could be modified and used to take pictures on the RPi camera and using the Firebase project to store images, which could then be incorporated within the Glitch webpage. It should be noted that an “img” folder was first created to store image files locally on the RPi. The “View Pic” webpage load button on the Blynk app was then connected with the webpage address of the Glitch webpage, so the “Take Picture” button would take a picture and the “View Pic” button would display the picture (via the webpage). 
+
 To check all elements are connected and interacting correctly, run the cameracheck.py script and use the buttons on the Blynk app to take and view pictures. 
 It should be noted that the takepicture.py script is separate from the chamberfoods.py script, but called withing the chamberfoods.py script. This is in order to avoid the error: 
-picamera.exc.PiCameraMMALError: Failed to enable connection: Out of resources
+
+`picamera.exc.PiCameraMMALError: Failed to enable connection: Out of resources`
+
 Essentially the camera is started and closed each time with the takepicture.py script so the camera does not think it is starting twice if the chamberfoods.py script is stopped and started again. 
-9	Using ThingSpeak to capture data
+
+# 9	Using ThingSpeak to capture data
+
 To capture the temperature and humidity data and set alarms for breaches of thresholds, I set up a ThingSpeak account. After setting up an account and logging in, I then created a new channel called “ChamberFoods”, with fields including temperature and humidity. 
- 
+
+![rpi4](assets/thingspeaknewchannel.png) 
 
 Within the Devices menu, select the MQTT option and click the “Add a new device” button. Enter a device name and select the “ChamberFoods” channel before clicking the “Add Device” button. 
+
+![rpi4](assets/thingspeaknewdevice.png) 
  
 When shown the MQTT credentials for the new device, download as plain text and save (be sure to capture password as it will not be available elsewhere). These credentials should now be inputted into your .env file, along with your channel ID and transmission interval (I used 15 seconds).
 
- 
+![rpi4](assets/thingspeakchannelid.png) 
+
 In order to create a TLS connection, use the broker.thingspeak.crt file to enter a certificate (for example as generated using OpenSSL). 
+
 To begin sending data to the ThingSpeak MQTT, run the script as follows: 
-python3 chamberfoodsthingspeak.py
+
+`python3 chamberfoodsthingspeak.py`
+
 This should be done using a separate terminal to the main script (chamberfoods.py). 
+
 In order to view the ThingsSpeak data on the Blynk app, use the “Historical Data” webpage load button previously shown on the app to enter the web address of your ThingSpeak channel (note, the channel will need to be set to public). For example, it should look something like: 
+
 https://thingspeak.com/channels/123456
 
-10	Linking ThingSpeak to Twitter
+# 10	Linking ThingSpeak to Twitter
+
 Within the Apps menu of ThingSpeak, select ThingTweet and click the “Link Twitter Account” button. Here you can link an existing Twitter account via your user name and password (potentially a good idea to start a new Twitter account for your RPi). 
 Once again within the Apps menu of ThingSpeak, select the React option and click the “New React” button. Fill in the fields to create an alert, for example if the temperature is too high send a Tweet, and press “Save”. 
- 
-11	Running the Chamber Foods system
 
-11.1	Positioning components for running the Chamber Foods system
+![rpi4](assets/thingspeaktwitter.png) 
+ 
+# 11	Running the Chamber Foods system
+
+## 11.1	Positioning components for running the Chamber Foods system
+
 As it is currently coded, the two major components to be plugged into the ENER010 extension board include a refrigerator (socket 1) and a light/lamp (socket 2). These two components will be used for cooling and providing light whilst taking a picture, respectively, however additional components can be added to the code that would further aid the control of environmental conditions. For example, you could group sockets by cooling components (e.g. fridge, fan), heating components (e.g. heat mat, heat lamp), humidifying components (e.g. humidifier), and dehumidifying components (dehumidifier, extraction fan). There is also the possibility to add further lighting components to sockets (e.g. UV) as desired. 
 
 It is intended that the ENER010 board remains outside the fridge (chamber), but components such as the lamp will need to be placed within the fridge. Similarly, the RPi, RPi camera, and breakout board with ENER314-RT and DHT22 sensor will all need to be housed within fridge, with an extended charger cord running to an outlet outside. To protect these components whilst in the fridge it may be possible to fashion some sort of container that can be placed away from potential contaminants. It would be beneficial to have the temperature/humidity sensor close to the region of interest (e.g. where the food is being contained) and the RPi Camera positioned towards the items within the chamber/fridge for viewing.                                                                                                                               
 
-11.2	Operating the system
+## 11.2	Operating the system
+
 The two main scripts for running the basic Chamber Foods system from the RPi include: 
 
+```
 chamberfoods.py
 chamberfoodsthingspeak.py
+```
 
 While these two scripts are responsible for controlling all the data transfer, the user control and data display of the system is conducted through the Blynk app. 
 
@@ -268,38 +289,48 @@ Before running the main scripts, within the chamberfoods.py script, check the va
 
 Within Visual Studio Code or another code editor, access the RPi via SSH, open a terminal, navigate to the ChamberFoods directory and run the chamberfoodsthingspeak.py script as follows: 
 
-python3 chamberfoodsthingspeak.py
+`python3 chamberfoodsthingspeak.py`
+
 This will begin sending data to the ThingSpeak channels on the temperature and humidity. 
+
+![rpi4](assets/thingspeakchanneldisplay.png) 
  
+Keep the `chamberfoodsthingspeak.py` script running and open a new terminal, navigate to the ChamberFoods director, and run the `chamberfoods.py` script as follows: 
 
-Keep the chamberfoodsthingspeak.py script running and open a new terminal, navigate to the ChamberFoods director, and run the chamberfoods.py script as follows: 
-
-python3 chamberfoodsthingspeak.py
+`python3 chamberfoodsthingspeak.py`
 
 This will begin communicating with your remote-controlled sockets, RPi camera, DHT22 sensor, and Blynk app. 
- 
 
+![rpi4](assets/terminaldisplay.png) 
+ 
 Now that the main script is running, in addition to the ThingSpeak script, open the Blynk app (see Section 5) and select the ChamberFoods device, which should now be online. 
  
-
- 
+![rpi4](assets/blynkdeviceselect.jpg) 
+![rpi4](assets/blynkinterfacedisplay.png) 
 
 You will note that initially, the “Current Temperature Setpoint (Check)” is matching the “setvalue” variable in the script and not the “Temperature Setpoint Control” value on the Blynk app slider. Use the slider to change the setpoint and this should now update the “setvalue” variable and subsequently the Check value on the app. 
 
 *Note, if changing the Setpoint Control slider on the app does not cause a change in the Check value, leave the app running, stop the chamberfoods.py script momentarily (i.e. ctrl + z) and restart (i.e. python3 chamberfoods.py). Once the script is running again, use the slider once more and make sure the Check value changes accordingly (this can sometimes take a few seconds). 
+
+![rpi4](assets/blynkinterfacedisplaysetpointmatch.jpg) 
  
 To take a picture, click the “Press 4 Pic” button on the Blynk app. This will cause the fridge lamp (socket 2) to turn on while a picture is being taken before then turning off again. The event will be logged in the terminal. 
 
- 
+![rpi4](assets/consolepictake.png)
 
 To view the picture, click the “View Picture” button on the Blynk app. 
+
+![rpi4](assets/takepicdisplay.jpg)
  
 To check the recorded data on the ThingSpeak channel, click the “Historical Data” button on the Blynk app, which will take you to the ThingSpeak temperature and humidity charts. 
- 
-11.3	Alternative control system
+
+![rpi4](assets/thingspeakblynkdisplay.jpg)
+
+## 11.3	Alternative control system
+
 As mentioned previously, it is possible to add additional components to the Chamber Foods system. As an example, the following script assumes a heating element has been plugged into socket 3: 
 
-chamberfoods2.py
+`chamberfoods2.py`
 
 Also within this script, a slightly more complicated control system has been used, where heating and cooling components are not activated until a threshold beyond the relevant setpoint. Once these components are activated, they are then deactivated before reaching the setpoint to avoid an overshoot occurring. This system would require some refinement to ensure the activation and deactivation levels are suitable for the heating and cooling elements. More sophisticated controller systems could also be employed in future systems, such as proportional–integral–derivative (PID) controllers. 
 
