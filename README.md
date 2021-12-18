@@ -38,39 +38,59 @@ Using a second-hand refrigerator within the system means that a potential future
 13.	For ease of access, a linker button on the Blynk app will be added to take the user directly to the ThingSpeak website to view logged data.
 
 # 2	Components 
+
+![rpi4](assets/rpi4.jpg)
 •	Raspberry Pi 4 B (including charger and SD card)
  
+ 
+![rpi4](assets/rpicamera.png)
 •	Raspberry Pi Camera
  
+![rpi4](assets/ener314rt.jpg)
 •	Energenie ENER314-RT Two-Way Pi-Mote
- 
+
+![rpi4](assets/ener010.jpg)
 •	Energenie ENER010 4 Way Remote Control Extension Lead
  
+![rpi4](assets/grove_DHT_AM2302.jpg)
 •	Seeed Studio Grove Temperature and Humidity Sensor Pro Module (DHT22/AM2302)
  
+![rpi4](assets/canakit.jpg) 
 •	CanaKit Raspberry Pi GPIO Breakout Board Bundle
  
 
-3	Assembling Components
+# 3	Assembling Components
 
 1.	Attach the Pi Camera to the Raspberry Pi (RPi), as per the instructions here (note, camera may face in opposing orientation to the image below, depending on the orientation of the connector pins in relation to the RPi). 
- 
+![rpi4](assets/rpipluscamer.png)
+
 2.	Connect the RPi GPIO pins to the Breadboard in the CanaKit using the T-Cobbler. 
- 
+![rpi4](assets/rpiplusboard.jpg)
+
 3.	It is now necessary to connect the ENER314-RT unit and the DHT/AM2302 sensor unit to the breadboard. Typically, the ENER314-RT sits on the GPIO pins of the RPi as follows: 
+![rpi4](assets/rpiplusener314rt.png)
  
 However, this is not possible if the pins also need to be accessed by the DHT/AM2302 sensor. Therefore, we can wire only the necessary pins as described by the Energenie website (see here), as per the schematic below. 
- 
+![rpi4](assets/ener314rtlayout.png)
+
 4.	The DHT/AM2302 unit can now be similarly wired to the unused GPIO pins via the breadboard, including ground (black wire, pin number 6, ground), power (red wire, pin number 1, 3v3 Power), and data (yellow wire, pin number 7, GPIO 4). The resultant configuration should look something like as follows:      
+![rpi4](assets/setup1.jpg)
+![rpi4](assets/setup2.jpg)
+![rpi4](assets/setup3.jpg)
+![rpi4](assets/setup4.jpg)
+![rpi4](assets/setup5.jpg)
+
 5.	The RPi can now be powered up and accessed (e.g. via SSH). 
 
-4	Connecting to the remote-controlled extension lead
+# 4	Connecting to the remote-controlled extension lead
 
 Make sure that the RPi and required dependencies are up-to-date by running the following: 
+```
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install build-essential python3-dev
 sudo apt-get install python3-gpiozero
+```
 
 To control the Energenie products using Python, I first cloned the Python library compiled by Whaleygeek (David Whale) from Github:
 
