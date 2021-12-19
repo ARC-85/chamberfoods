@@ -142,7 +142,7 @@ Within this library I have specifically copied the script:
 
 `seeed_dht.py`
  
-To check the DHT22/AM2302 sensor is working run the script: 
+Just to note, the Seeed Studio instructions typically refer to using a Grove Base Hat for Raspberry Pi but I have gone without this option and just connected the DHT22/AM2302 sensor directly to the GPIO pins. To check the DHT22/AM2302 sensor is working run the following script, which does not require the Grove Base Hat: 
 
 `~/ChamberFoods $ python3 temphumi.py`
 
