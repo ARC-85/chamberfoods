@@ -167,13 +167,19 @@ I have used the [Blynk](https://blynk.io/) platform for developing an app that c
 
 Within the template, I set up 5 datastreams on virtual pins as follows: 
 
+- Virtual Pin 0 (V0) - TakePic, integer, min = 0, max = 1 (this will be used with a button widget for taking pictures in the chamber)
+- Virtual Pin 1 (V1) - TempSetpoint, integer, units = degrees C, min = 5, max = 50 (this will be used with a slider widget for setting the temperature setpoint)
+- Virtual Pin 2 (V2) - TempMeasure, double, units = degrees C, min = 0, max = 100 (this will be used with a guage widget for showing the measured temperature)
+- Virtual Pin 3 (V3) - HumiMeasure, double, units = percentage, min = 0, max = 100 (this will be used with a guage widget for showing the measured humidity)
+- Virtual Pin 4 (V4) - SetpointCheck, double, units = degrees C, min = 0, max = 50 (this will be used with a value display widget for showing the current setpoint used by the RPi)
+
 ![rpi4](assets/blynkdatastreams.png)
 
 Once the template was formed (including the addition of widgets on the web-dashboard), a new device was created based on the ChamberFoods template. 
 
 ![rpi4](assets/blynkwebdashboard.png)
  
-I then set up the device and widgets on the Blynk app as per below: 
+I then set up the device and widgets on the Blynk app as per below (note the virtual pin widgets are as previously described, while the "Historical Data" and "View Picture" widgets are webpage buttons linking the ChamberFoods ThingSpeak and Glitch websites, respectively): 
 
 ![rpi4](assets/blynkmobilesetup.png)
 
