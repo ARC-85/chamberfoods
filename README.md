@@ -80,11 +80,17 @@ Using a second-hand refrigerator within the system means that a potential future
 
 ![rpi4](assets/rpiplusener314rt.png)
  
-However, this is not possible if the pins also need to be accessed by the DHT/AM2302 sensor. Therefore, we can wire only the necessary pins as described by the Energenie website, see [here](https://energenie4u.co.uk/res/pdfs/ENER314-RT%20User%20Guide%20V2.pdf), as per the schematic below. 
+However, this is not possible if the pins also need to be accessed by the DHT22/AM2302 sensor. Therefore, we can wire only the necessary pins as described by the Energenie website, see [here](https://energenie4u.co.uk/res/pdfs/ENER314-RT%20User%20Guide%20V2.pdf), as per the schematic below. 
 
 ![rpi4](assets/ener314rtlayout.png)
 
-4.	The DHT/AM2302 unit can now be similarly wired to the unused GPIO pins via the breadboard, including ground (black wire, pin number 6, ground), power (red wire, pin number 1, 3v3 Power), and data (yellow wire, pin number 7, GPIO 4). The resultant configuration should look something like as follows:  
+4.	The DHT/AM2302 unit can now be similarly wired to the unused GPIO pins via the breadboard, including ground (black wire, pin number 6, ground), power (red wire, pin number 1, 3v3 Power), and data (yellow wire, pin number 7, GPIO 4). 
+
+The resultant configuration should look something like the following schematic (green highlighted pins were used for DHT22/AM2302 connection, blue highlighted pins were used for ENER314-RT connection).
+
+![rpi4](assets/GPIOheader.png)
+
+Below are some images of the actual connected hardware.
     
 ![rpi4](assets/setup1.jpg)
 
