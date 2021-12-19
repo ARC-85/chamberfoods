@@ -244,7 +244,104 @@ Within the Storage I copied the ID (not including "gs://") and within the Realti
 
 ![rpi4](assets/firebasestoreageaddress.png)
  
-Within Glitch, I created a New Project and updated the index.html and script.js to accommodate the Firebase project. Note, you will need to update the firebaseConfig in your own script.js by accessing the “Settings” options within Project Overview once more and scrolling to SDK snippet within the “General” tab.  
+Within Glitch, I created a New Project and updated the index.html and script.js to accommodate the Firebase project. The index.html for the Glitch page might look something like as follows: 
+
+```
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Chamber Foods</title>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.js"></script>
+      <!-- import the webpage's stylesheet -->
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.css">
+      <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+      <!-- Add Firebase products that you want to use -->
+      <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+      <!-- import the webpage's javascript file -->
+      <script src="/script.js" ></script>
+   </head>
+   <body>
+      <section class="ui container">
+         <main>
+            <article class="ui basic segment">
+               <div class="ui inverted grey segment">
+                  <h4 class="ui center aligned inverted header">
+                     Chamber picture last taken at <span id="time"></span>: <br>
+                  </h4>
+                  <div class="ui teal inverted segment">
+                     <img class="ui massive centered image" id="photo" />
+                  </div>
+               </div>
+            </article>
+         </main>
+         </div>
+      </section>
+   </body>
+</html>
+```
+
+While the script.js file might look something like as follows. 
+
+```
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
+};
+
+firebase.initializeApp(firebaseConfig);
+
+// Get a reference to the file storage service
+const storage = firebase.storage();
+// Get a reference to the database service
+const database = firebase.database();
+
+// Create camera database reference
+const camRef = database.ref("file");
+
+// Sync on any updates to the DB. THIS CODE RUNS EVERY TIME AN UPDATE OCCURS ON THE DB.
+camRef.limitToLast(1).on("value", function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    const image = childSnapshot.val()["image"];
+    const time = childSnapshot.val()["timestamp"];
+    const storageRef = storage.ref(image);
+
+    storageRef
+      .getDownloadURL()
+      .then(function(url) {
+        console.log(url);
+        document.getElementById("photo").src = url;
+        document.getElementById("time").innerText = time;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  });
+});
+
+const btn = document.querySelector("button"); // Get the button from the page
+// Detect clicks on the button
+if (btn) {
+  btn.onclick = function() {
+    // The JS works in conjunction with the 'rotated' code in style.css
+    btn.classList.toggle("rotated");
+  };
+}
+```
+
+Note, you will need to update the firebaseConfig in your own script.js by accessing the “Settings” options within Project Overview once more and scrolling to SDK snippet within the “General” tab.  
 
 ![rpi4](assets/firebasesettings.png) 
 
