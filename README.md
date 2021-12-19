@@ -351,12 +351,12 @@ Note, you will need to update the firebaseConfig in your own script.js by access
 
 Having already assigned the “TakePic” data stream to the “V0” virtual pin in the Blynk template, I could then assign the “V0” virtual pin to the “Take Picture” button in the Blynk app. Using this button, the V0 value could be modified and used to take pictures on the RPi camera and using the Firebase project to store images, which could then be incorporated within the Glitch webpage. It should be noted that an “img” folder was first created to store image files locally on the RPi. The “View Pic” webpage load button on the Blynk app was then connected with the webpage address of the Glitch webpage, so the “Take Picture” button would take a picture and the “View Pic” button would display the picture (via the webpage). 
 
-To check all elements are connected and interacting correctly, run the cameracheck.py script and use the buttons on the Blynk app to take and view pictures. 
-It should be noted that the takepicture.py script is separate from the chamberfoods.py script, but called withing the chamberfoods.py script. This is in order to avoid the error: 
+To check all elements are connected and interacting correctly, run the `cameracheck.py` script and use the buttons on the Blynk app to take and view pictures. 
+It should be noted that the `takepicture.py` script is separate from the `chamberfoods.py` script, but called withing the `chamberfoods.py` script. This is in order to avoid the error: 
 
 `picamera.exc.PiCameraMMALError: Failed to enable connection: Out of resources`
 
-Essentially the camera is started and closed each time with the takepicture.py script so the camera does not think it is starting twice if the chamberfoods.py script is stopped and started again. 
+Essentially the camera is started and closed each time with the `takepicture.py` script so the camera does not think it is starting twice if the `chamberfoods.py` script is stopped and started again. 
 
 # 9	Using ThingSpeak to capture data
 
