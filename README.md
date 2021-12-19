@@ -368,11 +368,11 @@ Within the Devices menu, select the MQTT option and click the “Add a new devic
 
 ![rpi4](assets/thingspeaknewdevice.png) 
  
-When shown the MQTT credentials for the new device, download as plain text and save (be sure to capture password as it will not be available elsewhere). These credentials should now be inputted into your .env file, along with your channel ID and transmission interval (I used 15 seconds).
+When shown the MQTT credentials for the new device, download as plain text and save (be sure to capture password as it will not be available elsewhere). These credentials should now be inputted into your .env file, along with your channel ID and transmission interval (I used 16 seconds).
 
 ![rpi4](assets/thingspeakchannelid.png) 
 
-In order to create a TLS connection, use the broker.thingspeak.crt file to enter a certificate (for example as generated using OpenSSL). 
+In order to create a TLS connection, use the `broker.thingspeak.crt` file to enter a certificate (for example as generated using OpenSSL). 
 
 To begin sending data to the ThingSpeak MQTT, run the script as follows: 
 
