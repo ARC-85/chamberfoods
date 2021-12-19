@@ -410,9 +410,9 @@ chamberfoodsthingspeak.py
 
 While these two scripts are responsible for controlling all the data transfer, the user control and data display of the system is conducted through the Blynk app. 
 
-Before running the main scripts, within the chamberfoods.py script, check the values for “setvalue” and “tempidletime” variables. The “setvalue” variable represents the starting point for the setpoint temperature to control against. This can be modified using the Blynk app but can be set from the outset if necessary, within the script. The “tempidletime” refers to the amount of time the cooling unit (e.g. fridge) should wait before turning on or off again. This can be important if you want to avoid damaging the cooling system of your fridge, for example. A recommended value might be 900 (i.e. 15 minutes). 
+Before running the main scripts, within the `chamberfoods.py` script, check the values for “setvalue” and “tempidletime” variables. The “setvalue” variable represents the starting point for the setpoint temperature to control against. This can be modified using the Blynk app but can be set from the outset if necessary, within the script. The “tempidletime” refers to the amount of time the cooling unit (e.g. fridge) should wait before turning on or off again. This can be important if you want to avoid damaging the cooling system of your fridge, for example. A recommended value might be 900 (i.e. 15 minutes). 
 
-Within Visual Studio Code or another code editor, access the RPi via SSH, open a terminal, navigate to the ChamberFoods directory and run the chamberfoodsthingspeak.py script as follows: 
+Within Visual Studio Code or another code editor, access the RPi via SSH, open a terminal, navigate to the ChamberFoods directory and run the `chamberfoodsthingspeak.py` script as follows: 
 
 `python3 chamberfoodsthingspeak.py`
 
@@ -435,7 +435,7 @@ Now that the main script is running, in addition to the ThingSpeak script, open 
 
 You will note that initially, the “Current Temperature Setpoint (Check)” is matching the “setvalue” variable in the script and not the “Temperature Setpoint Control” value on the Blynk app slider. Use the slider to change the setpoint and this should now update the “setvalue” variable and subsequently the Check value on the app. 
 
-*Note, if changing the Setpoint Control slider on the app does not cause a change in the Check value, leave the app running, stop the chamberfoods.py script momentarily (i.e. ctrl + z) and restart (i.e. python3 chamberfoods.py). Once the script is running again, use the slider once more and make sure the Check value changes accordingly (this can sometimes take a few seconds). 
+**Note, if changing the Setpoint Control slider on the app does not cause a change in the Check value, leave the app running, stop the `chamberfoods.py` script momentarily (i.e. ctrl + z) and restart (i.e. `python3 chamberfoods.py`). Once the script is running again, use the slider once more and make sure the Check value changes accordingly (this can sometimes take a few seconds). **
 
 ![rpi4](assets/blynkinterfacedisplaysetpointmatch.jpg) 
  
