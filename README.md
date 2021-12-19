@@ -118,7 +118,7 @@ To control the Energenie products using Python, I first cloned the Python librar
 
 `git clone https://github.com/whaleygeek/pyenergenie.git`
 
-Within this library, I have copied the energenie folder, located in: 
+Within this library, I have copied the `energenie` folder, located in: 
 
 `~$ cd pyenergenie/src`
 
