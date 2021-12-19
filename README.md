@@ -2,6 +2,8 @@
 
 ### [Chamber Foods](https://chamberfoods.glitch.me/) is an IoT project combining smart appliances, artisanal foods, and DIY.
 
+![Chamber_Foods_Architecture](https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686/curedmeat.jpg?v=1639787151576)
+
 There are a variety of foods that require highly controlled environmental conditions for long periods of time, one such example is cured meats (i.e. charcuterie). Traditionally these processes have been left to master craftspeople, with the risk of failure and inconsistency always a threat due to difficulties in maintaining environmental conditions.
 
 To overcome challenges in maintaining controlled environmental conditions, whilst making the process of environmentally controlled food production more accessible to those non-skilled in the art, Chamber Foods uses temperature and humidity sensor devices, in combination with a Raspberry Pi controller, to measure conditions in a closed environment (i.e. a chamber). To allow easy control over these conditions, users will be able to define set points and monitor the measurements remotely via a series of interfaces. The defined setpoints will trigger automated actuation of heating and cooling processes.
