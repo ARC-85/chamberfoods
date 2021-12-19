@@ -179,7 +179,7 @@ Once the template was formed (including the addition of widgets on the web-dashb
 
 ![rpi4](assets/blynkwebdashboard.png)
  
-I then set up the device and widgets on the Blynk app as per below (note the virtual pin widgets are as previously described, while the "Historical Data" and "View Picture" widgets are webpage buttons linking the ChamberFoods ThingSpeak and Glitch websites, respectively): 
+I then set up the device and widgets on the Blynk app as per below (note the virtual pin widgets are as previously described, while the "Historical Data" and "View Picture" widgets are webpage buttons linking the ChamberFoods [ThingSpeak](https://thingspeak.com/channels/1604498) and [Glitch](https://chamberfoods.glitch.me/chamberpic.html) websites, respectively): 
 
 ![rpi4](assets/blynkmobilesetup.png)
 
