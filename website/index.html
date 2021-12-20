@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Chamber Foods</title>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.js"></script>
+   </head>
+   <body>
+      <img src="https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686%2Fchamber%20foods%20logo.png?v=1639257236935" class="ui centered massive image">
+      <section class="ui container">
+         <header  class="ui stacked tertiary inverted red segment">
+            <h1 class="ui center aligned header">Climate Controlled Cuisine</h1>
+         </header>
+         <div class="ui grid">
+            <div class="ui twelve wide column">
+               <nav>
+                  <ul class="ui three item tabular menu">
+                     <li id="home" class="ui item"><a href="index.html">Home</a></li>
+                     <li id="overview" class="ui item"><a href="overview.html">Project Overview</a></li>
+                     <li id="chamberpic" class="ui item"><a href="chamberpic.html">Chamber View</a></li>
+                  </ul>
+               </nav>
+               <script>
+                  document.querySelector("#home").classList.add("active")
+               </script>
+               <main>
+                  <article class="ui basic segment">
+                     <h4>
+                        Chamber Foods is an IoT project combining <em>smart appliances, artisanal foods, and DIY</em>. 
+                     </h4>
+                     <div class="ui inverted grey segment">
+                        <img src="https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686/charcuterie.jpg?v=1639786730762" class="ui centered massive image">
+                        <p class="ui inverted teal segment">
+                           There are a variety of foods that require highly controlled environmental conditions for long periods of time, one such example is cured meats (i.e. charcuterie). Traditionally these processes have been left to <em>master craftspeople</em>, with the risk of failure and inconsistency always a threat due to difficulties in maintaining environmental conditions. 
+                        </p>
+                        <div class="ui segment">
+                           <img src="https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686/20211206_203631.jpg?v=1639787294688" class="ui centered massive image">
+                        </div>
+                        <p class="ui circular inverted blue segment">To overcome challenges in maintaining controlled environmental conditions, whilst making the process of environmentally controlled food production more accessible to those non-skilled in the art, Chamber Foods uses temperature and humidity sensor devices, in combination with a Raspberry Pi controller, to measure conditions in a closed environment (i.e. a chamber). To allow easy control over these conditions, users will be able to define set points and monitor the measurements remotely via a series of interfaces. The defined setpoints will trigger automated actuation of heating and cooling processes. 
+                        </p>
+                        <img src="https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686/Meat-curing-chamber.jpg?v=1639787631917" class="ui centered massive image">
+                        <h2>
+                           Sustainability and platform expansion
+                        </h2>
+                        <p>
+                           To support the accessibility of this project to a broad user base, as well as promoting sustainability, it is recommended the chamber consists of a second-hand minifridge. Furthermore, heating will occur via a heater unit. Other proposed units to control humidity include a humidifying unit (cooling/dehumidifying will occur by powering the refrigerator). A fan can also be used to circulate air whenever the heating or cooling units are activated. 
+                        </p>
+                        <p>The number of units for controlling conditions could also be expanded in the future, including items such: </p>
+                        <div>
+                           <ul class="ui list">
+                              <div class="item">UV lights</div>
+                              <div class="item">Load cells</div>
+                              <div class="item">Injection ports for air/water/etc</div>
+                              <div class="item">Extractor fans</div>
+                           </ul>
+                        </div>
+                        <h2>
+                           Commercial Potential
+                        </h2>
+                        <p>Using a second-hand refrigerator within the system means that a potential future business model could provide a near “out of the box solution” for a smart appliance, without the difficulties in distributing bulky refrigerators. Future iterations of the product could seek to generate a community of users within a digital platform sharing different “recipes” for multiple food types, including cured meats, mushrooms, dried fruits, fermented foods, or plants.</p>
+                     </div>
+                  </article>
+               </main>
+            </div>
+            <div class="ui four wide column">
+               <aside>
+                  <div class="ui card">
+                     <div class="image">
+                        <img src="https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686/GitHub-logo.png?v=1639780675787">
+                     </div>
+                     <div class="content">
+                        <a class="header" href="https://github.com/ARC-85/chamberfoods">GitHub Repo</a>
+                        <div class="description">
+                           Check out the Chamber Foods GitHub repo for code and detailed instructions
+                        </div>
+                     </div>
+                  </div>
+                  <div class="ui card">
+                     <div class="image">
+                        <img src="https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686/thingspeaklogo.png?v=1639780969813">
+                     </div>
+                     <div class="content">
+                        <a class="header" href="https://thingspeak.com/channels/1604498">ThingSpeak</a>
+                        <div class="description">
+                           Track the Chamber Foods data on ThingSpeak.
+                        </div>
+                     </div>
+                  </div>
+                  <div class="ui card">
+                     <div class="image">
+                        <img src="https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686/main-qimg-cf4366b1fc27463b06f5a9b623724628.jpg?v=1639781453754">
+                     </div>
+                     <div class="content">
+                        <a class="header" href="https://twitter.com/AndrewsRaspiPi">Twitter</a>
+                        <div class="description">
+                           Get important Chamber Foods updates on Twitter.
+                        </div>
+                     </div>
+                  </div>
+               </aside>
+            </div>
+         </div>
+         <footer class="ui stacked segment">
+            <p> Contact us at : info@chamberfoods.com</p>
+         </footer>
+      </section>
+   </body>
+</html>
