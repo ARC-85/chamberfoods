@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Chamber Foods</title>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.js"></script>
+   </head>
+   <body>
+      <img src="https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686%2Fchamber%20foods%20logo.png?v=1639257236935" class="ui centered massive image">
+      <section class="ui container">
+         <header  class="ui stacked tertiary inverted red segment">
+            <h1 class="ui center aligned header">Climate Controlled Cuisine</h1>
+         </header>
+         <div class="ui grid">
+            <div class="ui twelve wide column">
+               <nav>
+                  <ul class="ui three item tabular menu">
+                     <li id="home" class="ui item"><a href="index.html">Home</a></li>
+                     <li id="overview" class="ui item"><a href="overview.html">Project Overview</a></li>
+                     <li id="chamberpic" class="ui item"><a href="chamberpic.html">Chamber View</a></li>
+                  </ul>
+               </nav>
+               <script>
+                  document.querySelector("#overview").classList.add("active")
+               </script>
+               <main>
+                  <article class="ui basic segment">
+                     <h4>
+                        Chamber Foods is an IoT project combining <em>smart appliances, artisanal foods, and DIY</em>. 
+                     </h4>
+                     <div class="ui inverted grey segment">
+                        <div class="ui teal inverted segment">
+                           <div class="ui segment">
+                              <img src="https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686/ChamberFoodsOverview.png?v=1639785459931" class="ui centered massive image">
+                           </div>
+                           <div class="ui secondary segment">
+                              <ul class="ui list">
+                                 <div class="item"> 1. A DHT22 Digital Temperature Humidity Sensor (AM2302) will measure the temperature and connect to the RPI through GPIO physical pins 7 (data), 6 (ground), and 1 (3v3 power). </div>
+                                 <br>
+                                 <div class="item"> 2. Live temperature data will be sent to the Blynk app (V0) from the RPI via WiFi, where it will be displayed as a gauge and chart. </div>
+                                 <br>
+                                 <div class="item"> 3. The temperature setpoint will be selected by the user using the slider widget and transmitted to the RPI (V1) via WiFi. Here, the temperature setpoint will be compared to the measured temperature (Step 1). </div>
+                                 <br>
+                                 <div class="item"> 4. If the measured temperature is above the setpoint, this will trigger an event for the RPI to communicate to the RT device (ENER314-RT) through physical pins 17, 14, and 20 (power and grounding), and 13, 15, 19, 21, 22, 23, and 26 (data). </div>
+                                 <br>
+                                 <div class="item"> 5. The RT device (ENER314-RT) will then switch on the appropriate adapter on the RT-controlled power-board (ENER010) via 433MHz RF transmission. </div>
+                                 <br>
+                                 <div class="item"> 6. The RT-controlled power-board (ENER010) will then power on the refrigerator with 220V mains electricity. </div>
+                                 <br>
+                                 <div class="item"> 7. Temperature and humidity conditions will be continuously transferred and logged to different channels in ThingSpeak via the ThingSpeak MQTT broker. </div>
+                                 <br>
+                                 <div class="item"> 8. The device’s ThingSpeak channels will be linked to Twitter via the  ThingTweet app, and the React app will then be used to send a tweet to the related Twitter account if a critical temperature level is breached. </div>
+                                 <br>
+                                 <div class="item"> 9. To check on the state of the fridge’s contents, the user can click a button on the Blynk app which will be transmitted to the RPI (V2) via WiFi. </div>
+                                 <br>
+                                 <div class="item"> 10. If the button is activated the RPI camera will be used to take a picture of the contents of the fridge while the button is being pushed, in doing the image will be transmitted to the Firebase Realtime Database and Storage. </div>
+                                 <br>
+                                 <div class="item"> 11. The current image will then be displayed in web-based app on Glitch, also presenting the time and date of the most current image. </div>
+                                 <br>
+                                 <div class="item"> 12. For ease of access, a linker button on the Blynk app will be added to take the user directly to the Glitch website to view the most current image of the fridge contents. </div>
+                                 <br>
+                                 <div class="item"> 13. For ease of access, a linker button on the Blynk app will be added to take the user directly to the ThingSpeak website to view logged data. </div>
+                                 <br>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </article>
+               </main>
+            </div>
+            <div class="ui four wide column">
+               <aside>
+                  <div class="ui card">
+                     <div class="image">
+                        <img src="https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686/GitHub-logo.png?v=1639780675787">
+                     </div>
+                     <div class="content">
+                        <a class="header" href="https://github.com/ARC-85/chamberfoods">GitHub Repo</a>
+                        <div class="description">
+                           Check out the Chamber Foods GitHub repo for code and detailed instructions
+                        </div>
+                     </div>
+                  </div>
+                  <div class="ui card">
+                     <div class="image">
+                        <img src="https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686/thingspeaklogo.png?v=1639780969813">
+                     </div>
+                     <div class="content">
+                        <a class="header" href="https://thingspeak.com/channels/1604498">ThingSpeak</a>
+                        <div class="description">
+                           Track the Chamber Foods data on ThingSpeak.
+                        </div>
+                     </div>
+                  </div>
+                  <div class="ui card">
+                     <div class="image">
+                        <img src="https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686/main-qimg-cf4366b1fc27463b06f5a9b623724628.jpg?v=1639781453754">
+                     </div>
+                     <div class="content">
+                        <a class="header" href="https://twitter.com/AndrewsRaspiPi">Twitter</a>
+                        <div class="description">
+                           Get important Chamber Foods updates on Twitter.
+                        </div>
+                     </div>
+                  </div>
+                  <div class="ui card">
+                     <div class="image">
+                        <img src="https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686/youtube.png?v=1640034532779">
+                     </div>
+                     <div class="content">
+                        <a class="header" href="https://youtu.be/iK1VggZRzL4">YouTube</a>
+                        <div class="description">
+                           See a demo video of the Chamber Foods project in action on YouTube..
+                        </div>
+                     </div>
+                  </div>
+               </aside>
+            </div>
+         </div>
+         <footer class="ui stacked segment">
+            <p> Contact us at : info@chamberfoods.com</p>
+         </footer>
+      </section>
+   </body>
+</html>
