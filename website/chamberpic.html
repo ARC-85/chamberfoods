@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Chamber Foods</title>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.js"></script>
+      <!-- import the webpage's stylesheet -->
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.css">
+      <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+      <!-- Add Firebase products that you want to use -->
+      <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-storage.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+      <!-- import the webpage's javascript file -->
+      <script src="/script.js" ></script>
+   </head>
+   <body>
+      <section class="ui container">
+         <img class="ui medium centered image" src="https://cdn.glitch.me/8b034f03-230a-4cc8-8517-cbfef7326686%2Fchamber%20foods%20logo.png?v=1639257236935"/><br>
+         <div class="ui grid">
+            <div class="ui twelve wide column">
+               <nav>
+                  <ul class="ui three item tabular menu">
+                     <li id="home" class="ui item"><a href="index.html">Home</a></li>
+                     <li id="overview" class="ui item"><a href="overview.html">Project Overview</a></li>
+                     <li id="chamberpic" class="ui item"><a href="chamberpic.html">Chamber View</a></li>
+                  </ul>
+               </nav>
+               <script>
+                  document.querySelector("#chamberpic").classList.add("active")
+               </script>
+               <main>
+                  <article class="ui basic segment">
+                     <div class="ui inverted grey segment">
+                        <h4 class="ui center aligned inverted header">
+                           Chamber picture last taken at <span id="time"></span>: <br>
+                        </h4>
+                        <div class="ui teal inverted segment">
+                           <img class="ui massive centered image" id="photo" />
+                        </div>
+                     </div>
+            </div>
+            </article>
+            </main>
+         </div>
+         <footer class="ui stacked segment">
+            <p class="ui inverted teal segment"> Contact us at : info@chamberfoods.com</p>
+         </footer>
+      </section>
+   </body>
+</html>
